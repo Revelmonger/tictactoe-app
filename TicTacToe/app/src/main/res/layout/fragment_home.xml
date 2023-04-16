@@ -118,7 +118,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/round_shape_btn" />
+        android:background="@drawable/round_shape_btn_start_game" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

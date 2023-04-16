@@ -9,6 +9,64 @@
     tools:context="com.app.tictactoe.MainActivity">
 
 
+    <TextView
+        android:id="@+id/TurnPlayerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+
+        android:fontFamily="@font/comic_sans_ms3"
+        android:text="Turn:"
+        android:textColor="@color/black"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Player_1_Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="52dp"
+
+        android:fontFamily="@font/comic_sans_ms3"
+        android:text="@string/Player_1"
+        android:textColor="@color/black"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TurnPlayerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="178dp"
+        android:layout_marginTop="52dp"
+
+        android:fontFamily="@font/comic_sans_ms3"
+        android:text=""
+        android:textColor="@color/black"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Player_2_Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="256dp"
+        android:layout_marginTop="55dp"
+
+        android:fontFamily="@font/comic_sans_ms3"
+        android:text="@string/Player_2"
+        android:textColor="@color/black"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 
 
     <TextView
@@ -27,92 +85,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Player_1_Name" />
 
-
-    <!-- You can turn off default margins to get rid of grid spacing -->
-
-    <TextView
-        android:id="@+id/Player_1_Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="52dp"
-
-        android:text="@string/Player_1"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/Player2Symbol"
-        android:layout_width="55dp"
-        android:layout_height="50dp"
-
-        android:layout_marginStart="256dp"
-
-        android:fontFamily="@font/comic_sans_ms3"
-        android:gravity="center"
-        android:text="O"
-
-        android:textColor="@color/blue"
-        android:textSize="27sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Player_2_Name" />
-
-    <TextView
-        android:id="@+id/Player_2_Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="256dp"
-        android:layout_marginTop="55dp"
-
-        android:text="@string/Player_2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/TurnPlayerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-
-        android:text="Turn:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/player_2_Name2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="178dp"
-        android:layout_marginTop="52dp"
-
-        android:text="Player 1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
     <TextView
         android:id="@+id/CurrentPlayerSymbol"
         android:layout_width="55dp"
         android:layout_height="50dp"
+        android:layout_marginTop="25dp"
 
-        android:layout_marginTop="20dp"
         android:fontFamily="@font/comic_sans_ms3"
         android:gravity="center"
-        android:text="X"
+        android:text=""
         android:textColor="@color/red"
         android:textSize="27sp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TurnPlayerText" />
 
 
+    <TextView
+        android:id="@+id/Player2Symbol"
+        android:layout_width="55dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="256dp"
+
+        android:fontFamily="@font/comic_sans_ms3"
+        android:gravity="center"
+        android:text="O"
+        android:textColor="@color/blue"
+        android:textSize="27sp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Player_2_Name" />
+
+12
+
+
+
+
+
+
+
+    <!-- You can turn off default margins to get rid of grid spacing -->
     <GridLayout
         android:id="@+id/light_grid"
         android:layout_width="wrap_content"
@@ -152,7 +165,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="164dp"
 
-        android:background="@drawable/round_shape_btn"
+        android:background="@drawable/round_shape_btn_start_game"
         android:fontFamily="@font/comic_sans_ms3"
         android:text="New Game"
         android:textColor="@color/black"
@@ -171,9 +184,9 @@
         android:layout_gravity="center"
         android:layout_marginBottom="104dp"
 
-        android:background="@drawable/round_shape_btn"
+        android:background="@drawable/round_shape_btn_start_game"
         android:fontFamily="@font/comic_sans_ms3"
-        android:text="Exit"
+        android:text="@string/Exit"
         android:textColor="@color/red"
         android:textSize="30sp"
 

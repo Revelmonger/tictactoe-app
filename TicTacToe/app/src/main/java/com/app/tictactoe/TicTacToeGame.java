@@ -52,12 +52,13 @@ public class TicTacToeGame {
         public String getCurrentPlayer() {
             return CurrentPlayer;
         }
+
         public String changeCurrentPlayer(){
             if (CurrentPlayer == PlayerOne) {
-                this.CurrentPlayer = PlayerTwo
+                this.CurrentPlayer = PlayerTwo;
             }
             if (CurrentPlayer == PlayerTwo) {
-                this.CurrentPlayer = PlayerOne
+                this.CurrentPlayer = PlayerOne;
             }
         }
     }
