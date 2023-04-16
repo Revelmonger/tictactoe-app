@@ -131,6 +131,7 @@ public class TicTacToeGame {
 
         //TODO
         //Add in the code for the diagonals. It should already be implemented in the fxml version
+        return false;
     }
 
     //Handels logic between isWinner() and isFull() to decide when the game is over
