@@ -3,6 +3,7 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/ComicSansMS3" />
+        android:font="@font/comicsansms3_resource"
+        />
 
 </font-family>

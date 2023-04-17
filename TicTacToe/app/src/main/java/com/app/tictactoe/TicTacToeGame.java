@@ -1,7 +1,10 @@
 package com.app.tictactoe;
-import java.util.Random;
 
 public class TicTacToeGame {
+
+    Players player_construct = new Players("Bob", "Rick");
+    String winners_name;
+
     public static final int GRID_SIZE = 3;
 
     // Creates an array of integer values
@@ -53,7 +56,7 @@ public class TicTacToeGame {
             return CurrentPlayer;
         }
 
-        public String changeCurrentPlayer(){
+        public void changeCurrentPlayer(){
             if (CurrentPlayer == PlayerOne) {
                 this.CurrentPlayer = PlayerTwo;
             }
@@ -68,11 +71,11 @@ public class TicTacToeGame {
     public void selectGridSpace(int row, int col) {
 
         //We handle these checks here before passing them to GameFragment.java to obfuscate
-        if(Players.getCurrentPlayer == Players.getplayerOne) {
+        if(player_construct.getCurrentPlayer() == player_construct.getplayerOne()) {
             //TODO
             //Do something to the square in the GameFragment.java 
         }
-        if(Players.getCurrentPlayer == Players.getplayerTwo) {
+        if(player_construct.getCurrentPlayer() == player_construct.getplayerTwo()) {
             //TODO
             //Do something to the square in the GameFragment.java 
         }
@@ -81,11 +84,11 @@ public class TicTacToeGame {
 
     //Checks if the array is full leading to a tie
     private boolean isFull() {
-        int row, column;
+        int row, col;
         boolean status = true;
-        for (int row = 0; row < GRID_SIZE; row++) {
-            for (int col = 0; col < GRID_SIZE; col++) {
-                if (mTicTacToeGrid[row][column] == 0) {
+        for ( row = 0; row < GRID_SIZE; row++) {
+            for ( col = 0; col < GRID_SIZE; col++) {
+                if (mTicTacToeGrid[row][col] == 0) {
                     status = false;
                 }
             }
@@ -102,6 +105,7 @@ public class TicTacToeGame {
             for (int col = 0; col < GRID_SIZE; col++) {
                 line_total = line_total +  mTicTacToeGrid[row][col];
                 if (line_total == 3 || line_total == -3) {
+                    winners_name = player_construct.getCurrentPlayer();
                     //TODO
                     //we can add logic here to return the winners name
                     //but it may be a better idea to use this function
@@ -118,7 +122,7 @@ public class TicTacToeGame {
             for (int row = 0; row < GRID_SIZE; row++) {
                 line_total = line_total +  mTicTacToeGrid[row][col];
                 if (line_total == 3 || line_total == -3) {
-                    Players.getCurrentPlayer
+                    winners_name = player_construct.getCurrentPlayer();
                     //TODO
                     //we can add logic here to return the winners name
                     //but it may be a better idea to use this function
