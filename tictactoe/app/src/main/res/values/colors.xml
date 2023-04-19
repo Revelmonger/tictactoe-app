@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tan_background">#E6D9B5</color>
+    <color name="red_exit_button">#c93636</color>
+    <color name="linear_gradient_a">#BFEF88</color>
+    <color name="linear_gradient_b">#FFFFB1</color>
+    <color name="linear_gradient_Yellow_accent">#78BB9E</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#c93636</color>
+    <color name="blue">#0000FF</color>
+    <color name="game_button_color">#d1cbba</color>
+</resources>
