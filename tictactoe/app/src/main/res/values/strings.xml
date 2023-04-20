@@ -5,4 +5,7 @@
     <string name="Player_1">Player 1:</string>
     <string name="Player_2">Player 2:</string>
     <string name="Exit">Exit</string>
+    <string name="x">X</string>
+    <string name="o">O</string>
+    <string name="NewGame">New Game</string>
 </resources>

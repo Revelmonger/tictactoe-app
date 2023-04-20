@@ -31,7 +31,7 @@ public class TicTacToeGame {
 
     //TODO - I think I did the constructor correctly. IDK someone review it.
     //Handel and call the player class from this class by calling it when the onStart button is clicked in the HomeFragment
-    public class Players {
+    public static class Players {
 
         public String PlayerTwo;
         public String PlayerOne;
@@ -103,11 +103,6 @@ public class TicTacToeGame {
                 line_total = line_total +  mTicTacToeGrid[row][col];
                 if (line_total == 3 || line_total == -3) {
                     winners_name = player_construct.getCurrentPlayer();
-                    //TODO
-                    //we can add logic here to return the winners name
-                    //but it may be a better idea to use this function
-                    //in a if statement then if use the current_player
-                    //variable to declare winner and show winner's popup
                     return true;
                 }
             }
@@ -120,18 +115,28 @@ public class TicTacToeGame {
                 line_total = line_total +  mTicTacToeGrid[row][col];
                 if (line_total == 3 || line_total == -3) {
                     winners_name = player_construct.getCurrentPlayer();
-                    //TODO
-                    //we can add logic here to return the winners name
-                    //but it may be a better idea to use this function
-                    //in a if statement then if use the current_player
-                    //variable to declare winner and show winner's popup
                     return true;
                 }
             }
         }
 
-        //TODO
-        //Add in the code for the diagonals. It should already be implemented in the fxml version
+        //Checking downward sloping diagonal
+        int downwardSumAngle = 0;
+        for (int i = 0; i < GRID_SIZE; i++) {
+            downwardSumAngle = downwardSumAngle + mTicTacToeGrid[i][i];
+        }
+        if (downwardSumAngle == -3 || downwardSumAngle == 3) {
+            winners_name = player_construct.getCurrentPlayer();
+            return true;
+        }
+
+        //Checking upward sloping diagonal
+        int upwardSumAngle = 0;
+        upwardSumAngle = mTicTacToeGrid[0][2] + mTicTacToeGrid[1][1] + mTicTacToeGrid[2][0];
+        if (upwardSumAngle == -3 || upwardSumAngle == 3) {
+            winners_name = player_construct.getCurrentPlayer();
+            return true;
+        }
         return false;
     }
 
