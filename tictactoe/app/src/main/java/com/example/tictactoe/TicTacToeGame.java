@@ -49,6 +49,7 @@ public class TicTacToeGame {
             return PlayerTwo;
         }
 
+        //TODO: Feel free to have this return R.strings.x or o
         public String getCurrentPlayer() {
             return CurrentPlayer;
         }
@@ -69,12 +70,12 @@ public class TicTacToeGame {
 
         //We handle these checks here before passing them to GameFragment.java to obfuscate
         if(player_construct.getCurrentPlayer().equals(player_construct.getplayerOne())) {
-            //TODO
-            //Do something to the square in the GameFragment.java
+            //TODO in the mTicTacToeGrid set the value to 1 or -1 depending on the current player ()
+
         }
         if(player_construct.getCurrentPlayer().equals(player_construct.getplayerTwo())) {
-            //TODO
-            //Do something to the square in the GameFragment.java
+            //TODO in the mTicTacToeGrid set the value to 1 or -1 depending on the current player ()
+
         }
     }
 

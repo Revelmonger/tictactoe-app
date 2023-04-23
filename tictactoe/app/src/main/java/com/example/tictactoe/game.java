@@ -17,6 +17,8 @@ import org.w3c.dom.Text;
 
 public class game extends Fragment {
 
+    // TODO: Create a pop up Winner Congratz thing.
+    // I have a tutorial you can follow if you want to do this one
 
     String playerOneNameIs, playerTwoNameIs;
 
@@ -77,17 +79,26 @@ public class game extends Fragment {
         button21 = (Button) view.findViewById(R.id.button21);
         button22 = (Button) view.findViewById(R.id.button22);
 
-//TODO : create player object which we can use to refrence the current player and set the value of the buttons.
+        //TODO: create these objects
+        //create player object in the game instance which we can use to refrence the current player and set the value of the buttons.
+        //create a game instance that represents the board state. you can then call getCurrentPlayer() to find the current player
 
+    //TODO: MAKE A FUNCTION LIKE THIS
+        //If isSelected(row, column) = true do nothing
+        //else
+            // call selectGridSpace(row, column)
+            // button00.setText(Game.Player.getCurrentPlayer()); //Use getString(R.string.x) or return o in the function return
+            // if  Game.isGameOver() to check if winner
+                //Dialog
+            // else
+                // Game.players.changeCurrentPlayer()
+
+
+
+        //TODO: IMPLEMENT THE OTHER FUNCTIONS
         button00.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                /*
-                if (playerObject.getCurrentPlayer() == playerObject.getplayerOne()) {
-                     button00.setText("X");
-                }   else {
-                     button00.setText("O");
-                }
-                 */
+
                 //This is working code for setting the buttons string value
                 button00.setText(getString(R.string.x));
             }
@@ -124,12 +135,14 @@ public class game extends Fragment {
         });
 
 
+
         //onClick event for the New Game Button
         new_game_button = view.findViewById(R.id.new_game_button);
         new_game_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO
+                //TODO SOMEONE FIGURE OUT HOW THE newInstance function works and have it reset the view
+                //Or just reuse the code from startGameButton in the home.java, but I will mock you for doing this
                 newInstance("param1", "param2");
             }
         });
