@@ -162,40 +162,40 @@ tools:context=".game">
 </GridLayout>
 
 
-<android.widget.Button
-    android:id="@+id/new_game_button"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_marginBottom="164dp"
+    <android.widget.Button
+        android:id="@+id/new_game_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
 
-    android:background="@drawable/round_shape_btn_start_game"
-    android:fontFamily="@font/comic_sans_ms3"
-    android:text="@string/NewGame"
-    android:textColor="@color/black"
+        android:background="@drawable/round_shape_btn_start_game"
+        android:fontFamily="@font/comic_sans_ms3"
+        android:text="@string/NewGame"
+        android:textColor="@color/black"
 
-    android:textSize="30sp"
+        android:textSize="30sp"
 
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.497"
-    app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/exit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/light_grid" />
 
-<android.widget.Button
-    android:id="@+id/exit_button"
-    android:layout_width="171dp"
-    android:layout_height="48dp"
-    android:layout_gravity="center"
-    android:layout_marginBottom="104dp"
+    <android.widget.Button
+        android:id="@+id/exit_button"
+        android:layout_width="171dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="104dp"
 
-    android:background="@drawable/round_shape_btn_start_game"
-    android:fontFamily="@font/comic_sans_ms3"
-    android:text="@string/Exit"
-    android:textColor="@color/red"
-    android:textSize="30sp"
+        android:background="@drawable/round_shape_btn_start_game"
+        android:fontFamily="@font/comic_sans_ms3"
+        android:text="@string/Exit"
+        android:textColor="@color/red"
+        android:textSize="30sp"
 
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

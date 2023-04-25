@@ -79,6 +79,11 @@ public class game extends Fragment {
         button21 = (Button) view.findViewById(R.id.button21);
         button22 = (Button) view.findViewById(R.id.button22);
 
+
+
+
+
+
         //TODO: create these objects
         //create player object in the game instance which we can use to refrence the current player and set the value of the buttons.
         //create a game instance that represents the board state. you can then call getCurrentPlayer() to find the current player
@@ -103,17 +108,32 @@ public class game extends Fragment {
                 //Dialog
             // else
                 // Game.players.changeCurrentPlayer()
+        public void onButtonClick(int row, int column) {
+            if (Game.isSelected(row, column)) {
+        } else
+            Game.selectGridSpace(row, column);
+            if (Game.Player.getCurrentPlayer() == Game.Player.PLAYER_ONE) {
+                button00.setText(getString(R.string.x));
+            }
+            else {
+                button00.setText(getString(R.string.o));
+            }
+            if (Game.isGameOver()) {}
+            else {
+                Game.players.changeCurrentPlayer();
+            }
 
 
 
         //TODO: IMPLEMENT THE OTHER FUNCTIONS
-        button00.setOnClickListener(new View.OnClickListener() {
+       /* button00.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 //This is working code for setting the buttons string value
                 button00.setText(getString(R.string.x));
             }
-        });
+        });*/
+
 
 
 
@@ -168,3 +188,4 @@ public class game extends Fragment {
         return view;
     }
 }
+
