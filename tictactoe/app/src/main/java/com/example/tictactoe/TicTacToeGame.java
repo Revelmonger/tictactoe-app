@@ -1,5 +1,8 @@
 package com.example.tictactoe;
 
+
+
+
 public class TicTacToeGame {
 
     Players player_construct = new Players("Bob", "Rick");
@@ -49,9 +52,13 @@ public class TicTacToeGame {
             return PlayerTwo;
         }
 
-        //TODO: Feel free to have this return R.strings.x or o
+
         public String getCurrentPlayer() {
-            return CurrentPlayer;
+            if (CurrentPlayer.equals(PlayerOne)) {
+                return "R.strings.x";
+            } else {
+                return "R.strings.o";
+            }
         }
 
         public void changeCurrentPlayer(){
@@ -64,18 +71,16 @@ public class TicTacToeGame {
         }
     }
 
-    //TODO
+
     //Identifies the turn player and changes the button accordingly
     public void selectGridSpace(int row, int col) {
 
         //We handle these checks here before passing them to GameFragment.java to obfuscate
         if(player_construct.getCurrentPlayer().equals(player_construct.getplayerOne())) {
-            //TODO in the mTicTacToeGrid set the value to 1 or -1 depending on the current player ()
-
+            mTicTacToeGrid[row][col] = 1;
         }
         if(player_construct.getCurrentPlayer().equals(player_construct.getplayerTwo())) {
-            //TODO in the mTicTacToeGrid set the value to 1 or -1 depending on the current player ()
-
+            mTicTacToeGrid[row][col] = -1;
         }
     }
 
