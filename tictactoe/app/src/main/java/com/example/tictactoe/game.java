@@ -94,14 +94,33 @@ public class game extends Fragment {
 
 
 
-
+    /*
        button00.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO: Add function call here pass in row,col
                 //button00.setText(getString(R.string.x));
+
+                    }
+                });
+
             }
         });
+        */
+        public void RowsColl(int row, int col) {
+            Log.d("TAG", "Button clicked at row " + row + ", column " + col);
+        }
 
+
+        button00.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int row = 0;
+                int col = 0;
+                // call your function and pass in row and col values
+                RowsColl(row, col);
+                // set the text of the button to "X"
+                button00.setText(getString(R.string.x));
+            }
+        });
 
 
         Bundle bundle=getArguments();
