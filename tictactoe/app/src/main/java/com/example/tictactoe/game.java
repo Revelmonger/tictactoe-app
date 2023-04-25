@@ -37,6 +37,15 @@ public class game extends Fragment {
     private String mParam2;
 
 
+    // create player objects
+    TicTacToeGame currentGameInstance;
+
+
+    TicTacToeGame.Players currentGamePlayers;
+
+
+
+
     public game() {
         // Required empty public constructor
     }
@@ -80,62 +89,18 @@ public class game extends Fragment {
         button22 = (Button) view.findViewById(R.id.button22);
 
 
+        currentGameInstance =  new TicTacToeGame();
+        currentGamePlayers = new TicTacToeGame.Players(playerOneNameIs,playerTwoNameIs);
 
 
 
 
-        //TODO: create these objects
-        //create player object in the game instance which we can use to refrence the current player and set the value of the buttons.
-        //create a game instance that represents the board state. you can then call getCurrentPlayer() to find the current player
-
-        // create player objects
-       TicTacToeGame currentGameInstance = new TicTacToeGame();
-
-        // create game instance
-       TicTacToeGame.Players currentgameplayers = TicTacToeGame.Players(playerOneNameIs,playerTwoNameIs);
-
-
-        return view;
-    }
-
-
-    //TODO: MAKE A FUNCTION LIKE THIS
-        //If isSelected(row, column) = true do nothing
-        //else
-            // call selectGridSpace(row, column)
-            // button00.setText(Game.Player.getCurrentPlayer()); //Use getString(R.string.x) or return o in the function return
-            // if  Game.isGameOver() to check if winner
-                //Dialog
-            // else
-                // Game.players.changeCurrentPlayer()
-        public void onButtonClick(int row, int column) {
-            if (Game.isSelected(row, column)) {
-        } else
-            Game.selectGridSpace(row, column);
-            if (Game.Player.getCurrentPlayer() == Game.Player.PLAYER_ONE) {
-                button00.setText(getString(R.string.x));
-            }
-            else {
-                button00.setText(getString(R.string.o));
-            }
-            if (Game.isGameOver()) {}
-            else {
-                Game.players.changeCurrentPlayer();
-            }
-
-
-
-        //TODO: IMPLEMENT THE OTHER FUNCTIONS
-       /* button00.setOnClickListener(new View.OnClickListener() {
+       button00.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                //This is working code for setting the buttons string value
-                button00.setText(getString(R.string.x));
+                // TODO: Add function call here pass in row,col
+                //button00.setText(getString(R.string.x));
             }
-        });*/
-
-
-
+        });
 
 
 
@@ -187,5 +152,43 @@ public class game extends Fragment {
 
         return view;
     }
+
+
+
+
+    //TODO: MAKE A FUNCTION LIKE THIS
+    //If isSelected(row, column) = true do nothing
+    //else
+    // call selectGridSpace(row, column)
+    // button00.setText(Game.Player.getCurrentPlayer()); //Use getString(R.string.x) or return o in the function return
+    // if  Game.isGameOver() to check if winner
+    //Dialog
+    // else
+    // Game.players.changeCurrentPlayer()
+    public void onButtonClick(int row, int col) {
+
+            if (currentGameInstance.isSelected(row, column)) {
+            } else
+                currentGameInstance.selectGridSpace(row, column);
+            if (currentGameInstance.Player.getCurrentPlayer() == Game.Player.PLAYER_ONE) {
+                button00.setText(getString(R.string.x));
+            } else {
+                button00.setText(getString(R.string.o));
+            }
+            if (currentGameInstance.isGameOver()) {
+            } else {
+                currentGameInstance.players.changeCurrentPlayer();
+            }
+
+
+    }
+
+
+
 }
+
+
+
+
+
 
