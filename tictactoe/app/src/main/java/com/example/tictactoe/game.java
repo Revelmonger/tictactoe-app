@@ -83,6 +83,17 @@ public class game extends Fragment {
         //create player object in the game instance which we can use to refrence the current player and set the value of the buttons.
         //create a game instance that represents the board state. you can then call getCurrentPlayer() to find the current player
 
+        // create player objects
+       TicTacToeGame currentGameInstance = new TicTacToeGame();
+
+        // create game instance
+       TicTacToeGame.Players currentgameplayers = TicTacToeGame.Players(playerOneNameIs,playerTwoNameIs);
+
+
+        return view;
+    }
+
+
     //TODO: MAKE A FUNCTION LIKE THIS
         //If isSelected(row, column) = true do nothing
         //else
