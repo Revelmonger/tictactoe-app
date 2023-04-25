@@ -92,17 +92,32 @@ public class game extends Fragment {
                 //Dialog
             // else
                 // Game.players.changeCurrentPlayer()
+        public void onButtonClick(int row, int column) {
+            if (Game.isSelected(row, column)) {
+        } else
+            Game.selectGridSpace(row, column);
+            if (Game.Player.getCurrentPlayer() == Game.Player.PLAYER_ONE) {
+                button00.setText(getString(R.string.x));
+            }
+            else {
+                button00.setText(getString(R.string.o));
+            }
+            if (Game.isGameOver()) {}
+            else {
+                Game.players.changeCurrentPlayer();
+            }
 
 
 
         //TODO: IMPLEMENT THE OTHER FUNCTIONS
-        button00.setOnClickListener(new View.OnClickListener() {
+       /* button00.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 //This is working code for setting the buttons string value
                 button00.setText(getString(R.string.x));
             }
-        });
+        });*/
+
 
 
 
