@@ -79,6 +79,11 @@ public class game extends Fragment {
         button21 = (Button) view.findViewById(R.id.button21);
         button22 = (Button) view.findViewById(R.id.button22);
 
+
+
+
+
+
         //TODO: create these objects
         //create player object in the game instance which we can use to refrence the current player and set the value of the buttons.
         //create a game instance that represents the board state. you can then call getCurrentPlayer() to find the current player
