@@ -141,9 +141,15 @@ public class game extends Fragment {
         new_game_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO SOMEONE FIGURE OUT HOW THE newInstance function works and have it reset the view
-                //Or just reuse the code from startGameButton in the home.java, but I will mock you for doing this
-                newInstance("param1", "param2");
+                game newGameInstance = new game();
+                
+                //Assigns the bundle as an argument for the game
+                newGameInstance.setArguments(bundle);
+
+                //Creates a new fragment from the game
+                Fragment fragment = newGameInstance;
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.nav_host_fragment, fragment ).commit();
             }
         });
 
