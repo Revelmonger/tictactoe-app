@@ -23,6 +23,8 @@ public class game extends Fragment {
     // TODO: Create a pop up Winner Congratz thing.
     // I have a tutorial you can follow if you want to do this one
 
+    View view;
+
     String playerOneNameIs, playerTwoNameIs;
 
     TextView Player_1_Name, Player_2_Name, TurnPlayerText, CurrentPlayerSymbol;
@@ -75,7 +77,7 @@ public class game extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_game, container, false);
+        view = inflater.inflate(R.layout.fragment_game, container, false);
 
 
         Player_1_Name = (TextView) view.findViewById(R.id.Player_1_Name);
@@ -209,7 +211,7 @@ public class game extends Fragment {
     }
 
     public void createPopUp() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(fragment_game.this);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
 
         // Set the message show for the Alert time
         builder.setMessage("Do you want to exit ?");
