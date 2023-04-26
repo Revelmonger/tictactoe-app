@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -106,9 +107,6 @@ public class game extends Fragment {
             }
         });
         */
-        public void RowsColl(int row, int col) {
-            Log.d("TAG", "Button clicked at row " + row + ", column " + col);
-        }
 
 
         button00.setOnClickListener(new View.OnClickListener() {
@@ -186,15 +184,16 @@ public class game extends Fragment {
     // Game.players.changeCurrentPlayer()
     public void onButtonClick(int row, int col) {
 
-            if (currentGameInstance.isSelected(row, column)) {
+            if (currentGameInstance.isSelected(row, col)) {
             } else
-                currentGameInstance.selectGridSpace(row, column);
-            if (currentGameInstance.Player.getCurrentPlayer() == Game.Player.PLAYER_ONE) {
+                currentGameInstance.selectGridSpace(row, col);
+            if (currentGameInstance.Player.getCurrentPlayer() == currentGameInstance.Player.PLAYER_ONE) {
                 button00.setText(getString(R.string.x));
             } else {
                 button00.setText(getString(R.string.o));
             }
             if (currentGameInstance.isGameOver()) {
+               //TODO Buzzed: Pop up dialog box
             } else {
                 currentGameInstance.players.changeCurrentPlayer();
             }
@@ -202,6 +201,9 @@ public class game extends Fragment {
 
     }
 
+    public void RowsColl(int row, int col) {
+        Log.d("TAG", "Button clicked at row " + row + ", column " + col);
+    }
 
 
 }
