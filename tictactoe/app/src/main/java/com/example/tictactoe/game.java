@@ -117,10 +117,7 @@ public class game extends Fragment {
             public void onClick(View v) {
                 int row = 0;
                 int col = 0;
-                // call your function and pass in row and col values
-                RowsColl(row, col);
-                // set the text of the button to "X"
-                button00.setText(getString(R.string.x));
+                onButtonClick(row, col,button00);
             }
         });
 
@@ -186,7 +183,9 @@ public class game extends Fragment {
     //Dialog
     // else
     // Game.players.changeCurrentPlayer()
-    public void onButtonClick(int row, int col) {
+
+    //This code defines a method named onButtonClick that takes two parameters row and col, which represent the row and column indices of the button clicked on the game board.
+    /*public void onButtonClick(int row, int col) {
 
             if (currentGameInstance.isSelected(row, col)) {
             } else
@@ -202,13 +201,38 @@ public class game extends Fragment {
             }
 
 
-    }
+    }*/
+
+    public void onButtonClick(int row, int col,Button currentButton) {
+
+        if (currentGameInstance.isSelected(row, col)) {
+            // do nothing, the button has already been selected
+        } else {
+            // select the grid space
+            currentGameInstance.selectGridSpace(row, col);
+            currentButton.setText(currentGameInstance.Player.getCurrentPlayerIcon());
+            if (currentGameInstance.isGameOver()) {
+            //TODO put pop up message
+                if (currentGameInstance.isWinner()) {
+                    createPopUp(1);
+                }
+                else {
+                    createPopUp(2);
+                }
+
+
+            }
+            else {
+                currentGameInstance.Player.changeCurrentPlayer();
+            }
+
+        }
 
     public void RowsColl(int row, int col) {
         Log.d("TAG", "Button clicked at row " + row + ", column " + col);
     }
 
-    public void createPopUp() {
+    public void createPopUp(int gameOverState) {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
 
         // Set the message show for the Alert time

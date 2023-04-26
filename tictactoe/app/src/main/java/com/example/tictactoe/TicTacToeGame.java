@@ -53,14 +53,20 @@ public class TicTacToeGame {
         }
 
 
-        public String getCurrentPlayer() {
+        public String getCurrentPlayerIcon() {
             if (CurrentPlayer.equals(PlayerOne)) {
                 return "R.strings.x";
             } else {
                 return "R.strings.o";
             }
         }
-
+        public String getCurrentPlayer() {
+            if (CurrentPlayer.equals(PlayerOne)) {
+                return PlayerOne;
+            } else {
+                return PlayerTwo;
+            }
+        }
         public void changeCurrentPlayer(){
             if (CurrentPlayer.equals(PlayerOne)) {
                 this.CurrentPlayer = PlayerTwo;
@@ -100,7 +106,7 @@ public class TicTacToeGame {
     }
 
     //Checks if there is a winner
-    private boolean isWinner(){
+    public boolean isWinner(){
 
         //Checking each row
         for (int row = 0; row < GRID_SIZE; row++) {
