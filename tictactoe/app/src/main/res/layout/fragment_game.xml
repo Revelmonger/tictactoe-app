@@ -162,7 +162,7 @@ tools:context=".game">
 </GridLayout>
 
 
-    <android.widget.Button
+     <android.widget.Button
         android:id="@+id/new_game_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

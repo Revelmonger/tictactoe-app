@@ -197,8 +197,6 @@ public class game extends Fragment {
                 button00.setText(getString(R.string.o));
             }
             if (currentGameInstance.isGameOver()) {
-               //TODO Buzzed: Pop up dialog box
-
             } else {
                 currentGameInstance.players.changeCurrentPlayer();
             }
@@ -214,28 +212,28 @@ public class game extends Fragment {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
 
         // Set the message show for the Alert time
-        builder.setMessage("Do you want to exit ?");
+        alertBuilder.setMessage(currentGameInstance.players.changeCurrentPlayer(), " is the winner!");
 
         // Set Alert Title
-        builder.setTitle("Alert !");
+        alertBuilder.setTitle("Congratulations!");
 
         // Set Cancelable false for when the user clicks on the outside the Dialog Box then it will remain show
-        builder.setCancelable(false);
+        alertBuilder.setCancelable(false);
 
         // Set the positive button with yes name Lambda OnClickListener method is use of DialogInterface interface.
-        builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
+        alertBuilder.setPositiveButton("New Game", (DialogInterface.OnClickListener) (dialog, which) -> {
             // When the user click yes button then app will close
             finish();
         });
 
         // Set the Negative button with No name Lambda OnClickListener method is use of DialogInterface interface.
-        builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
+        alertBuilder.setNegativeButton("Exit", (DialogInterface.OnClickListener) (dialog, which) -> {
             // If user click no then dialog box is canceled.
             dialog.cancel();
         });
 
         // Create the Alert dialog
-        AlertDialog alertDialog = builder.create();
+        AlertDialog alertDialog = alertBuilder.create();
         // Show the Alert Dialog box
         alertDialog.show();
 
