@@ -73,13 +73,15 @@ public class game extends Fragment {
             //Extracts the strings from the bundle
             playerOneNameIs = bundle.getString("playerOne", null);
             playerTwoNameIs = bundle.getString("playerTwo", null);
+            //Sets current player when bundle is pulled
+            currentPlayerIs = playerOneNameIs;
             //Sets the text of the players names to the corresponding TextViews
             Player_1_NameTextView.setText(playerOneNameIs);
             Player_2_NameTextView.setText(playerTwoNameIs);
         }
 
         //currentGameInstance =  new TicTacToeGame();
-        changeCurrentPlayer();
+
         button00.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int row = 0;
@@ -186,6 +188,16 @@ public class game extends Fragment {
     }
 
 
+    public void changeCurrentPlayer(){
+
+        if (currentPlayerIs == playerOneNameIs) {
+            currentPlayerIs = playerTwoNameIs;
+        } else if (currentPlayerIs == playerTwoNameIs) {
+            currentPlayerIs = playerOneNameIs;
+        } else {
+            currentPlayerIs = playerTwoNameIs;
+        }
+    }
     public void onButtonClick(int row, int col,Button currentButton) {
         currentButton.setText(getCurrentPlayerIcon());
         changeCurrentPlayer();
@@ -216,16 +228,6 @@ public class game extends Fragment {
     }
 
 
-    public void changeCurrentPlayer(){
-        currentPlayerIs = playerTwoNameIs;
-        if (currentPlayerIs.equals(playerOneNameIs)) {
-            currentPlayerIs = playerTwoNameIs;
-        } else if (currentPlayerIs.equals(playerTwoNameIs)) {
-            currentPlayerIs = playerOneNameIs;
-        } else {
-            currentPlayerIs = playerOneNameIs;
-        }
-    }
 
 
 
