@@ -93,7 +93,7 @@ public class game extends Fragment {
         button22 = (Button) view.findViewById(R.id.button22);
 
         currentGamePlayers = new Players(playerOneNameIs,playerTwoNameIs);
-        currentGameInstance =  new TicTacToeGame(currentGamePlayers);
+        currentGameInstance =  new TicTacToeGame();
 
 
         button00.setOnClickListener(new View.OnClickListener() {
@@ -191,15 +191,15 @@ public class game extends Fragment {
             // do nothing, the button has already been selected
         } else {
             // select the grid space
-            currentGameInstance.selectGridSpace(row, col);
-            currentButton.setText(currentGameInstance.Player.getCurrentPlayerIcon());
+            currentGameInstance.selectGridSpace(row, col, );
+            currentButton.setText(Players.getCurrentPlayerIcon());
             if (currentGameInstance.isGameOver()) {
             //TODO put pop up message
                 if (currentGameInstance.isWinner()) {
-                    createPopUp(1);
+                   // createPopUp(1);
                 }
                 else {
-                    createPopUp(2);
+                 //   createPopUp(2);
                 }
 
 

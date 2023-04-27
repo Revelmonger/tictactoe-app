@@ -4,7 +4,6 @@ package com.example.tictactoe;
 
 
 public class TicTacToeGame {
-    Players currentGamePlayers;
     String winners_name;
 
     public static final int GRID_SIZE = 3;
@@ -13,9 +12,9 @@ public class TicTacToeGame {
     private Integer[][] mTicTacToeGrid;
 
     //Resizes the array using the GRID_SIZE
-    public TicTacToeGame(Players startingPlayers) {
+    public TicTacToeGame() {
         mTicTacToeGrid = new Integer[GRID_SIZE][GRID_SIZE];
-        currentGamePlayers = startingPlayers;
+
     }
 
     //Initializes the values in the array to 0.
@@ -36,13 +35,13 @@ public class TicTacToeGame {
 
 
     //Identifies the turn player and changes the button accordingly
-    public void selectGridSpace(int row, int col) {
+    public void selectGridSpace(int row, int col, Players playerPassThrough) {
 
         //We handle these checks here before passing them to GameFragment.java to obfuscate
-        if(player_construct.getCurrentPlayer().equals(player_construct.getplayerOne())) {
+        if(playerPassThrough.getCurrentPlayer().equals(playerPassThrough.getplayerOne())) {
             mTicTacToeGrid[row][col] = 1;
         }
-        if(player_construct.getCurrentPlayer().equals(player_construct.getplayerTwo())) {
+        if(playerPassThrough.getCurrentPlayer().equals(playerPassThrough.getplayerTwo())) {
             mTicTacToeGrid[row][col] = -1;
         }
     }
@@ -63,7 +62,7 @@ public class TicTacToeGame {
     }
 
     //Checks if there is a winner
-    public boolean isWinner(){
+    public boolean isWinner(Players playerPassThrough){
 
         //Checking each row
         for (int row = 0; row < GRID_SIZE; row++) {
@@ -71,7 +70,7 @@ public class TicTacToeGame {
             for (int col = 0; col < GRID_SIZE; col++) {
                 line_total = line_total +  mTicTacToeGrid[row][col];
                 if (line_total == 3 || line_total == -3) {
-                    winners_name = player_construct.getCurrentPlayer();
+                    winners_name = playerPassThrough.getCurrentPlayer();
                     return true;
                 }
             }
@@ -83,7 +82,7 @@ public class TicTacToeGame {
             for (int row = 0; row < GRID_SIZE; row++) {
                 line_total = line_total +  mTicTacToeGrid[row][col];
                 if (line_total == 3 || line_total == -3) {
-                    winners_name = player_construct.getCurrentPlayer();
+                    winners_name = playerPassThrough.getCurrentPlayer();
                     return true;
                 }
             }
@@ -95,7 +94,7 @@ public class TicTacToeGame {
             downwardSumAngle = downwardSumAngle + mTicTacToeGrid[i][i];
         }
         if (downwardSumAngle == -3 || downwardSumAngle == 3) {
-            winners_name = player_construct.getCurrentPlayer();
+            winners_name = playerPassThrough.getCurrentPlayer();
             return true;
         }
 
@@ -103,7 +102,7 @@ public class TicTacToeGame {
         int upwardSumAngle = 0;
         upwardSumAngle = mTicTacToeGrid[0][2] + mTicTacToeGrid[1][1] + mTicTacToeGrid[2][0];
         if (upwardSumAngle == -3 || upwardSumAngle == 3) {
-            winners_name = player_construct.getCurrentPlayer();
+            winners_name = playerPassThrough.getCurrentPlayer();
             return true;
         }
         return false;
@@ -111,12 +110,12 @@ public class TicTacToeGame {
 
     //Handles logic between isWinner() and isFull() to decide when the game is over
     //Called by the onClick button in GameFragment.java
-    public boolean isGameOver() {
+    public boolean isGameOver(Players playerPassThrough) {
         //If the grid is full and there is not a winner: end the game
-        if (isFull() && !(isWinner())){
+        if (isFull() && !(isWinner(playerPassThrough))){
             return true;
         }
         //If the there is a winner: end the game
-        return isWinner();
+        return isWinner(playerPassThrough);
     }
 }
