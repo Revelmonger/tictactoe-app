@@ -42,11 +42,10 @@ public class game extends Fragment {
     private String mParam2;
 
 
-    // create player objects
+    // create  objects
     TicTacToeGame currentGameInstance;
 
-
-    TicTacToeGame.Players currentGamePlayers;
+    Players currentGamePlayers;
 
 
 
@@ -93,24 +92,8 @@ public class game extends Fragment {
         button21 = (Button) view.findViewById(R.id.button21);
         button22 = (Button) view.findViewById(R.id.button22);
 
-
-        currentGameInstance =  new TicTacToeGame();
-        currentGamePlayers = new TicTacToeGame.Players(playerOneNameIs,playerTwoNameIs);
-
-
-
-    /*
-       button00.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // TODO: Add function call here pass in row,col
-                //button00.setText(getString(R.string.x));
-
-                    }
-                });
-
-            }
-        });
-        */
+        currentGamePlayers = new Players(playerOneNameIs,playerTwoNameIs);
+        currentGameInstance =  new TicTacToeGame(currentGamePlayers);
 
 
         button00.setOnClickListener(new View.OnClickListener() {
@@ -132,9 +115,6 @@ public class game extends Fragment {
             Player_2_Name.setText(playerTwoNameIs);
         }
 
-
-
-
         //onClick event for the Exit Button
         exit_button = view.findViewById(R.id.exit_button);
         exit_button.setOnClickListener(new View.OnClickListener() {
@@ -147,8 +127,6 @@ public class game extends Fragment {
 
             }
         });
-
-
 
         //onClick event for the New Game Button
         new_game_button = view.findViewById(R.id.new_game_button);
@@ -166,6 +144,10 @@ public class game extends Fragment {
                 transaction.replace(R.id.nav_host_fragment, fragment ).commit();
             }
         });
+
+
+
+
 
 
         return view;

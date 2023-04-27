@@ -4,8 +4,7 @@ package com.example.tictactoe;
 
 
 public class TicTacToeGame {
-
-    Players player_construct = new Players("Bob", "Rick");
+    Players currentGamePlayers;
     String winners_name;
 
     public static final int GRID_SIZE = 3;
@@ -14,8 +13,9 @@ public class TicTacToeGame {
     private Integer[][] mTicTacToeGrid;
 
     //Resizes the array using the GRID_SIZE
-    public TicTacToeGame() {
+    public TicTacToeGame(Players startingPlayers) {
         mTicTacToeGrid = new Integer[GRID_SIZE][GRID_SIZE];
+        currentGamePlayers = startingPlayers;
     }
 
     //Initializes the values in the array to 0.
@@ -32,50 +32,7 @@ public class TicTacToeGame {
         return mTicTacToeGrid[row][col] != 0;
     }
 
-    //TODO - I think I did the constructor correctly. IDK someone review it.
-    //Handel and call the player class from this class by calling it when the onStart button is clicked in the HomeFragment
-    public static class Players {
 
-        public String PlayerTwo;
-        public String PlayerOne;
-        public String CurrentPlayer;
-
-        public Players(String PlayerOne, String PlayerTwo) {
-            this.PlayerOne = PlayerOne;
-            this.PlayerTwo = PlayerTwo;
-        }
-
-        public String getplayerOne() {
-            return PlayerOne;
-        }
-        public String getplayerTwo() {
-            return PlayerTwo;
-        }
-
-
-        public String getCurrentPlayerIcon() {
-            if (CurrentPlayer.equals(PlayerOne)) {
-                return "R.strings.x";
-            } else {
-                return "R.strings.o";
-            }
-        }
-        public String getCurrentPlayer() {
-            if (CurrentPlayer.equals(PlayerOne)) {
-                return PlayerOne;
-            } else {
-                return PlayerTwo;
-            }
-        }
-        public void changeCurrentPlayer(){
-            if (CurrentPlayer.equals(PlayerOne)) {
-                this.CurrentPlayer = PlayerTwo;
-            }
-            if (CurrentPlayer.equals(PlayerTwo)) {
-                this.CurrentPlayer = PlayerOne;
-            }
-        }
-    }
 
 
     //Identifies the turn player and changes the button accordingly
