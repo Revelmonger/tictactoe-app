@@ -20,8 +20,9 @@ import org.w3c.dom.Text;
 
 public class game extends Fragment {
 
-    // TODO: Create a pop up Winner Congratz thing.
-    // I have a tutorial you can follow if you want to do this one
+    public String PlayerTwo;
+    public String PlayerOne;
+    public String CurrentPlayer;
 
     View view;
 
@@ -35,11 +36,6 @@ public class game extends Fragment {
 
     Button new_game_button, exit_button;
 
-    private static final String ARG_PARAM1 = "Player1Name";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
 
 
     // create  objects
@@ -47,29 +43,31 @@ public class game extends Fragment {
 
     Players currentGamePlayers;
 
+    public static final int GRID_SIZE = 3;
+
+    // Creates an array of integer values
+    private Integer[][] mTicTacToeGrid;
+
+
+
+
+
 
 
 
     public game() {
         // Required empty public constructor
     }
-
-
     public static game newInstance(String param1, String param2) {
         game fragment = new game();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -103,6 +101,18 @@ public class game extends Fragment {
                 onButtonClick(row, col,button00);
             }
         });
+
+
+
+        button01.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int row = 0;
+                int col = 1;
+
+            }
+        });
+
+
 
 
         Bundle bundle=getArguments();
@@ -148,17 +158,26 @@ public class game extends Fragment {
         return view;
     }
 
+
+
+
+
+
+
+
+
+
     public void onButtonClick(int row, int col,Button currentButton) {
 
         if (currentGameInstance.isSelected(row, col)) {
             // do nothing, the button has already been selected
         } else {
             // select the grid space
-            currentGameInstance.selectGridSpace(row, col, currentGamePlayers);
-            currentButton.setText(Players.getCurrentPlayerIcon());
-            if (currentGameInstance.isGameOver(currentGamePlayers)) {
+            currentGameInstance.selectGridSpace(row, col);
+            currentButton.setText(currentGamePlayers.getCurrentPlayerIcon());
+            if (currentGameInstance.isGameOver()) {
                 //TODO put pop up message
-                if (currentGameInstance.isWinner(currentGamePlayers)) {
+                if (currentGameInstance.isWinner()) {
                     // createPopUp(1);
                 } else {
                     //   createPopUp(2);
@@ -166,15 +185,14 @@ public class game extends Fragment {
 
 
             } else {
-                Players.changeCurrentPlayer();
+                currentGamePlayers.changeCurrentPlayer();
             }
 
         }
 
     }
-    public void RowsColl(int row, int col) {
-        Log.d("TAG", "Button clicked at row " + row + ", column " + col);
-    }
+
+
         public void createPopUp(int gameOverState){
             if (gameOverState == 1){
                 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
@@ -210,6 +228,168 @@ public class game extends Fragment {
 
         }
 
+
+
+
+
+
+
+    public class TicTacToeGame {
+
+        //Resizes the array using the GRID_SIZE
+        public TicTacToeGame() {
+
+
+        }
+
+        //Initializes the values in the array to 0.
+        public void newGame() {
+            for (int row = 0; row < GRID_SIZE; row++) {
+                for (int col = 0; col < GRID_SIZE; col++) {
+                    mTicTacToeGrid[row][col] = 0;
+                }
+            }
+        }
+
+        //Returns a boolean value depending on if a player has already selected the button
+        public Boolean isSelected(int row, int col) {
+            if (mTicTacToeGrid[row][col] != 0){
+                return true;
+            }
+            return false;
+        }
+
+
+
+
+        //Identifies the turn player and changes the button accordingly
+        public void selectGridSpace(int row, int col) {
+
+            //We handle these checks here before passing them to GameFragment.java to obfuscate
+            if(currentGamePlayers.getCurrentPlayer().equals(currentGamePlayers.getplayerOne())) {
+                mTicTacToeGrid[row][col] = 1;
+            }
+            if(currentGamePlayers.getCurrentPlayer().equals(currentGamePlayers.getplayerTwo())) {
+                mTicTacToeGrid[row][col] = -1;
+            }
+        }
+
+
+        //Checks if the array is full leading to a tie
+        private boolean isFull() {
+            int row, col;
+            boolean status = true;
+            for ( row = 0; row < GRID_SIZE; row++) {
+                for ( col = 0; col < GRID_SIZE; col++) {
+                    if (mTicTacToeGrid[row][col] == 0) {
+                        status = false;
+                    }
+                }
+            }
+            return status;
+        }
+
+        //Checks if there is a winner
+        public boolean isWinner(){
+
+            //Checking each row
+            for (int row = 0; row < GRID_SIZE; row++) {
+                int line_total = 0;
+                for (int col = 0; col < GRID_SIZE; col++) {
+                    line_total = line_total +  mTicTacToeGrid[row][col];
+                    if (line_total == 3 || line_total == -3) {
+
+                        return true;
+                    }
+                }
+            }
+
+            //Checking each column
+            for (int col = 0; col < GRID_SIZE; col++) {
+                int line_total = 0;
+                for (int row = 0; row < GRID_SIZE; row++) {
+                    line_total = line_total +  mTicTacToeGrid[row][col];
+                    if (line_total == 3 || line_total == -3) {
+
+                        return true;
+                    }
+                }
+            }
+
+            //Checking downward sloping diagonal
+            int downwardSumAngle = 0;
+            for (int i = 0; i < GRID_SIZE; i++) {
+                downwardSumAngle = downwardSumAngle + mTicTacToeGrid[i][i];
+            }
+            if (downwardSumAngle == -3 || downwardSumAngle == 3) {
+
+                return true;
+            }
+
+            //Checking upward sloping diagonal
+            int upwardSumAngle = 0;
+            upwardSumAngle = mTicTacToeGrid[0][2] + mTicTacToeGrid[1][1] + mTicTacToeGrid[2][0];
+            if (upwardSumAngle == -3 || upwardSumAngle == 3) {
+
+                return true;
+            }
+            return false;
+        }
+
+        //Handles logic between isWinner() and isFull() to decide when the game is over
+        //Called by the onClick button in GameFragment.java
+        public boolean isGameOver() {
+            //If the grid is full and there is not a winner: end the game
+            if (isFull() && !(isWinner())){
+                return true;
+            }
+            //If the there is a winner: end the game
+            return isWinner();
+        }
+    }
+
+
+    public class Players {
+
+
+
+        public Players(String PlayerOne, String PlayerTwo) {
+            PlayerOne = PlayerOne;
+            PlayerTwo = PlayerTwo;
+           CurrentPlayer = PlayerOne;
+        }
+
+        public String getplayerOne() {
+            return PlayerOne;
+        }
+        public String getplayerTwo() {
+            return PlayerTwo;
+        }
+
+
+        public  String getCurrentPlayerIcon() {
+            if (CurrentPlayer.equals(PlayerOne)) {
+                return "R.strings.x";
+            } else {
+                return "R.strings.o";
+            }
+        }
+        public String getCurrentPlayer() {
+            if (CurrentPlayer.equals(PlayerOne)) {
+                return PlayerOne;
+            } else {
+                return PlayerTwo;
+            }
+        }
+        public void changeCurrentPlayer(){
+            if (CurrentPlayer.equals(PlayerOne)) {
+                CurrentPlayer = PlayerTwo;
+            }
+            if (CurrentPlayer.equals(PlayerTwo)) {
+                CurrentPlayer = PlayerOne;
+            }
+        }
+    }
 
 }
 
