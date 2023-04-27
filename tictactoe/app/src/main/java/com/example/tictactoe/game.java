@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,7 @@ public class game extends Fragment {
     String currentPlayerIs;
 
     //XML Imports
-    TextView Player_1_NameTextView, Player_2_NameTextView;
+    TextView Player_1_NameTextView, Player_2_NameTextView, CurrentPlayerSymbol;
 
     Button button00, button01, button02;
     Button button10, button11, button12;
@@ -46,7 +47,7 @@ public class game extends Fragment {
     Button new_game_button, exit_button;
 
     // create  objects
-  //  TicTacToeGame currentGameInstance;
+    TicTacToeGame currentGameInstance;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +57,7 @@ public class game extends Fragment {
 
         Player_1_NameTextView = (TextView) view.findViewById(R.id.Player_1_Name);
         Player_2_NameTextView = (TextView) view.findViewById(R.id.Player_2_Name);
-
+        CurrentPlayerSymbol = (TextView) view.findViewById(R.id.CurrentPlayerSymbol);
 
         button00 = (Button) view.findViewById(R.id.button00);
         button01 = (Button) view.findViewById(R.id.button01);
@@ -73,14 +74,16 @@ public class game extends Fragment {
             //Extracts the strings from the bundle
             playerOneNameIs = bundle.getString("playerOne", null);
             playerTwoNameIs = bundle.getString("playerTwo", null);
-            //Sets current player when bundle is pulled
-            currentPlayerIs = playerOneNameIs;
             //Sets the text of the players names to the corresponding TextViews
             Player_1_NameTextView.setText(playerOneNameIs);
             Player_2_NameTextView.setText(playerTwoNameIs);
         }
+        //Default Values
+        currentPlayerIs = playerOneNameIs;
+        CurrentPlayerSymbol.setText(getString(R.string.x));
 
-        //currentGameInstance =  new TicTacToeGame();
+        currentGameInstance =  new TicTacToeGame();
+        currentGameInstance.newGame();
 
         button00.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -188,60 +191,65 @@ public class game extends Fragment {
     }
 
 
-    public void changeCurrentPlayer(){
-
-        if (currentPlayerIs == playerOneNameIs) {
-            currentPlayerIs = playerTwoNameIs;
-        } else if (currentPlayerIs == playerTwoNameIs) {
-            currentPlayerIs = playerOneNameIs;
-        } else {
-            currentPlayerIs = playerTwoNameIs;
-        }
-    }
     public void onButtonClick(int row, int col,Button currentButton) {
-        currentButton.setText(getCurrentPlayerIcon());
-        changeCurrentPlayer();
 
-/*
         if (currentGameInstance.isSelected(row, col)) {
-            // do nothing, the button has already been selected
-        } else {
-            // select the grid space
+
+        }else{
             currentGameInstance.selectGridSpace(row, col);
-
             currentButton.setText(getCurrentPlayerIcon());
-            changeCurrentPlayer();
-            /*
+            currentButton.setTextColor(getCurrentPlayerColor());
+
             if (currentGameInstance.isGameOver()) {
-                //TODO put pop up message
+
+
                 if (currentGameInstance.isWinner()) {
-                    // createPopUp(1);
+                    createPopUp(1);
                 } else {
-                    //   createPopUp(2);
+                    createPopUp(2);
                 }
+
+
+
             } else {
-
-
+                changeCurrentPlayer();
+                CurrentPlayerSymbol.setText(getCurrentPlayerIcon());
+                CurrentPlayerSymbol.setTextColor(getCurrentPlayerColor());
 
             }
-*/
+        }
     }
 
 
+public void changeCurrentPlayer() {
+    if (currentPlayerIs.equals(playerOneNameIs)) {
+        currentPlayerIs = playerTwoNameIs;
+    } else if (currentPlayerIs.equals(playerTwoNameIs)){
+        currentPlayerIs = playerOneNameIs;
+    } else{
+        currentPlayerIs = playerOneNameIs;
+    }
+    }
 
 
-
-    public String getCurrentPlayerIcon(){
+public String getCurrentPlayerIcon(){
         if (currentPlayerIs.equals(playerOneNameIs)) {
-            return "x";
+            return getString(R.string.x);
         } else if (currentPlayerIs.equals(playerTwoNameIs)) {
-            return "o";
+            return getString(R.string.o);
         } else {
             return "Error";
         }
 
     }
 
+public Integer getCurrentPlayerColor(){
+    if (currentPlayerIs.equals(playerOneNameIs)) {
+        return this.getResources().getColor(R.color.red);
+    } else {
+        return this.getResources().getColor(R.color.blue);
+    }
+}
 
 
         public void createPopUp(int gameOverState){
@@ -249,7 +257,7 @@ public class game extends Fragment {
                 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
 
                 // Set the message show for the Alert time
-                alertBuilder.setMessage(" is the winner!");
+                alertBuilder.setMessage(currentPlayerIs+ " is the winner!");
 
                 // Set Alert Title
                 alertBuilder.setTitle("Congratulations!");
@@ -279,12 +287,7 @@ public class game extends Fragment {
 
         }
 
-
-
-/*
-
     public class TicTacToeGame {
-
 
         public static final int GRID_SIZE = 3;
 
@@ -293,8 +296,7 @@ public class game extends Fragment {
 
         //Resizes the array using the GRID_SIZE
         public TicTacToeGame() {
-
-
+            mTicTacToeGrid = new Integer[GRID_SIZE][GRID_SIZE];
         }
 
         //Initializes the values in the array to 0.
@@ -315,20 +317,17 @@ public class game extends Fragment {
         }
 
 
-
-
         //Identifies the turn player and changes the button accordingly
         public void selectGridSpace(int row, int col) {
 
             //We handle these checks here before passing them to GameFragment.java to obfuscate
-            if(currentGamePlayers.getCurrentPlayer().equals(currentGamePlayers.getplayerOne())) {
+            if(currentPlayerIs.equals(playerOneNameIs)) {
                 mTicTacToeGrid[row][col] = 1;
             }
-            if(currentGamePlayers.getCurrentPlayer().equals(currentGamePlayers.getplayerTwo())) {
+            if(currentPlayerIs.equals(playerTwoNameIs)) {
                 mTicTacToeGrid[row][col] = -1;
             }
         }
-
 
         //Checks if the array is full leading to a tie
         private boolean isFull() {
@@ -402,9 +401,6 @@ public class game extends Fragment {
             return isWinner();
         }
     }
-
-*/
-
 
 
 

@@ -63,6 +63,11 @@ public class home extends Fragment {
                 playerOne = playerOneEditText.getText().toString();
                 playerTwo = playerTwoEditText.getText().toString();
 
+                if (playerOne.equals(playerTwo)){
+                    playerOne = playerTwo+" #1";
+                    playerTwo = playerTwo+" #2";
+                }
+
                 //Assigns the text to key:value pairs in the bundle
                 transferBundle.putString("playerOne", playerOne);
                 transferBundle.putString("playerTwo", playerTwo);
