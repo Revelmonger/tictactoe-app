@@ -96,6 +96,62 @@ public class game extends Fragment {
             }
         });
 
+        button02.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int row = 0;
+                int col = 2;
+                onButtonClick(row, col,button02);
+            }
+        });
+
+        button10.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int row = 1;
+                int col = 0;
+                onButtonClick(row, col,button10);
+            }
+        });
+
+        button11.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int row = 1;
+                int col = 1;
+                onButtonClick(row, col,button11);
+            }
+        });
+
+        button12.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int row = 1;
+                int col = 2;
+                onButtonClick(row, col,button12);
+            }
+        });
+
+        button20.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int row = 2;
+                int col = 0;
+                onButtonClick(row, col,button20);
+            }
+        });
+
+        button21.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int row = 2;
+                int col = 1;
+                onButtonClick(row, col,button21);
+            }
+        });
+
+        button22.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int row = 2;
+                int col = 2;
+                onButtonClick(row, col,button22);
+            }
+        });
+
         //onClick event for the Exit Button
         exit_button = view.findViewById(R.id.exit_button);
         exit_button.setOnClickListener(new View.OnClickListener() {
