@@ -194,56 +194,58 @@ public class game extends Fragment {
             currentGameInstance.selectGridSpace(row, col, );
             currentButton.setText(Players.getCurrentPlayerIcon());
             if (currentGameInstance.isGameOver()) {
-            //TODO put pop up message
+                //TODO put pop up message
                 if (currentGameInstance.isWinner()) {
-                   // createPopUp(1);
-                }
-                else {
-                 //   createPopUp(2);
+                    // createPopUp(1);
+                } else {
+                    //   createPopUp(2);
                 }
 
 
-            }
-            else {
+            } else {
                 currentGameInstance.Player.changeCurrentPlayer();
             }
 
         }
 
-    public void RowsColl(int row, int col) {
-        Log.d("TAG", "Button clicked at row " + row + ", column " + col);
+        public void RowsColl ( int row, int col){
+            Log.d("TAG", "Button clicked at row " + row + ", column " + col);
+        }
     }
+        public void createPopUp(int gameOverState){
+            if (gameOverState == 1){
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
 
-    public void createPopUp(int gameOverState) {
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
+                // Set the message show for the Alert time
+                alertBuilder.setMessage(" is the winner!");
 
-        // Set the message show for the Alert time
-        alertBuilder.setMessage(currentGameInstance.players.changeCurrentPlayer(), " is the winner!");
+                // Set Alert Title
+                alertBuilder.setTitle("Congratulations!");
 
-        // Set Alert Title
-        alertBuilder.setTitle("Congratulations!");
+                // Set Cancelable false for when the user clicks on the outside the Dialog Box then it will remain show
+                alertBuilder.setCancelable(true);
 
-        // Set Cancelable false for when the user clicks on the outside the Dialog Box then it will remain show
-        alertBuilder.setCancelable(false);
+                // Create the Alert dialog
+                AlertDialog alertDialog = alertBuilder.create();
+                // Show the Alert Dialog box
+                alertDialog.show();
+            }
+            else if (gameOverState == 2){
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
 
-        // Set the positive button with yes name Lambda OnClickListener method is use of DialogInterface interface.
-        alertBuilder.setPositiveButton("New Game", (DialogInterface.OnClickListener) (dialog, which) -> {
-            // When the user click yes button then app will close
-            finish();
-        });
+                // Set Alert Title
+                alertBuilder.setTitle("It's a Tie!");
 
-        // Set the Negative button with No name Lambda OnClickListener method is use of DialogInterface interface.
-        alertBuilder.setNegativeButton("Exit", (DialogInterface.OnClickListener) (dialog, which) -> {
-            // If user click no then dialog box is canceled.
-            dialog.cancel();
-        });
+                // Set Cancelable false for when the user clicks on the outside the Dialog Box then it will remain show
+                alertBuilder.setCancelable(true);
 
-        // Create the Alert dialog
-        AlertDialog alertDialog = alertBuilder.create();
-        // Show the Alert Dialog box
-        alertDialog.show();
+                // Create the Alert dialog
+                AlertDialog alertDialog = alertBuilder.create();
+                // Show the Alert Dialog box
+                alertDialog.show();
+            }
 
-    }
+        }
 
 
 }
