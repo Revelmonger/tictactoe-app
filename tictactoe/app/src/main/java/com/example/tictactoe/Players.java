@@ -3,8 +3,8 @@ package com.example.tictactoe;
 public class Players {
 
     public String PlayerTwo;
-    public String PlayerOne;
-    public String CurrentPlayer;
+    public static String PlayerOne;
+    public static String CurrentPlayer;
 
     public Players(String PlayerOne, String PlayerTwo) {
         this.PlayerOne = PlayerOne;
@@ -19,7 +19,7 @@ public class Players {
     }
 
 
-    public String getCurrentPlayerIcon() {
+    public static String getCurrentPlayerIcon() {
         if (CurrentPlayer.equals(PlayerOne)) {
             return "R.strings.x";
         } else {
@@ -33,7 +33,7 @@ public class Players {
             return PlayerTwo;
         }
     }
-    public void changeCurrentPlayer(){
+    public static void changeCurrentPlayer(){
         if (CurrentPlayer.equals(PlayerOne)) {
             this.CurrentPlayer = PlayerTwo;
         }

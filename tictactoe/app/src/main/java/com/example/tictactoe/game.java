@@ -145,45 +145,8 @@ public class game extends Fragment {
             }
         });
 
-
-
-
-
-
         return view;
     }
-
-
-
-
-    //TODO: MAKE A FUNCTION LIKE THIS
-    //If isSelected(row, column) = true do nothing
-    //else
-    // call selectGridSpace(row, column)
-    // button00.setText(Game.Player.getCurrentPlayer()); //Use getString(R.string.x) or return o in the function return
-    // if  Game.isGameOver() to check if winner
-    //Dialog
-    // else
-    // Game.players.changeCurrentPlayer()
-
-    //This code defines a method named onButtonClick that takes two parameters row and col, which represent the row and column indices of the button clicked on the game board.
-    /*public void onButtonClick(int row, int col) {
-
-            if (currentGameInstance.isSelected(row, col)) {
-            } else
-                currentGameInstance.selectGridSpace(row, col);
-            if (currentGameInstance.Player.getCurrentPlayer() == currentGameInstance.Player.PLAYER_ONE) {
-                button00.setText(getString(R.string.x));
-            } else {
-                button00.setText(getString(R.string.o));
-            }
-            if (currentGameInstance.isGameOver()) {
-            } else {
-                currentGameInstance.players.changeCurrentPlayer();
-            }
-
-
-    }*/
 
     public void onButtonClick(int row, int col,Button currentButton) {
 
@@ -191,25 +154,24 @@ public class game extends Fragment {
             // do nothing, the button has already been selected
         } else {
             // select the grid space
-            currentGameInstance.selectGridSpace(row, col, );
+            currentGameInstance.selectGridSpace(row, col, currentGamePlayers);
             currentButton.setText(Players.getCurrentPlayerIcon());
-            if (currentGameInstance.isGameOver()) {
-            //TODO put pop up message
-                if (currentGameInstance.isWinner()) {
-                   // createPopUp(1);
-                }
-                else {
-                 //   createPopUp(2);
+            if (currentGameInstance.isGameOver(currentGamePlayers)) {
+                //TODO put pop up message
+                if (currentGameInstance.isWinner(currentGamePlayers)) {
+                    // createPopUp(1);
+                } else {
+                    //   createPopUp(2);
                 }
 
 
-            }
-            else {
-                currentGameInstance.Player.changeCurrentPlayer();
+            } else {
+                Players.changeCurrentPlayer();
             }
 
         }
 
+    }
     public void RowsColl(int row, int col) {
         Log.d("TAG", "Button clicked at row " + row + ", column " + col);
     }
