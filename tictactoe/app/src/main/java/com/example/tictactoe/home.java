@@ -63,10 +63,33 @@ public class home extends Fragment {
                 playerOne = playerOneEditText.getText().toString();
                 playerTwo = playerTwoEditText.getText().toString();
 
-                if (playerOne.equals(playerTwo)){
-                    playerOne = playerTwo+" #1";
-                    playerTwo = playerTwo+" #2";
+                //Check string length first them resize
+                if (playerOne.length() > 9){
+                    playerOne  = playerOne.substring(0, 7);
+                    playerOne  = playerOne + "..";
                 }
+                if (playerTwo.length() > 9){
+                    playerTwo  = playerTwo.substring(0, 7);
+                    playerTwo  = playerTwo + "..";
+                }
+
+
+                //Handles cases where fields are left empty
+                if (playerOne.equals(playerTwo)){
+                    playerOne = playerOne+" #1";
+                    playerTwo = playerTwo+" #2";
+                }else {
+                    //Handles cases where only one field is left empty
+                    if (playerOne.equals("")) {
+                        playerOne = "Player #1";
+                    }
+                    if (playerTwo.equals("")) {
+                        playerTwo = "Player #2";
+                    }
+                }
+
+
+
 
                 //Assigns the text to key:value pairs in the bundle
                 transferBundle.putString("playerOne", playerOne);
