@@ -75,7 +75,7 @@ public class home extends Fragment {
 
 
                 //Handles cases where fields are left empty
-                if (playerOne.equals(playerTwo)){
+                if (playerOne.equals(playerTwo) & !playerOne.equals(""))  {
                     playerOne = playerOne+" #1";
                     playerTwo = playerTwo+" #2";
                 }else {
