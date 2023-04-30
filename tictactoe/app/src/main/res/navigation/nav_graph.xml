@@ -8,14 +8,14 @@
     <!-- Home Fragment -->
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.tictactoe.home"
+        android:name="my.awesome.tictactoe.home"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_home" />
 
     <!-- Game Fragment -->
     <fragment
         android:id="@+id/navigation_game"
-        android:name="com.example.tictactoe.game"
+        android:name="my.awesome.tictactoe.game"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_game" />
 

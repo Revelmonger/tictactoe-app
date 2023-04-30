@@ -1,4 +1,4 @@
-package com.example.tictactoe;
+package my.awesome.tictactoe;
 
 import android.os.Bundle;
 
@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
+import com.example.tictactoe.R;
 
 
 public class home extends Fragment {
